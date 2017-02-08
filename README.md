@@ -1,6 +1,6 @@
 ##  Opendaylight SD-WAN testing 
 
-#### Install opendaylight karaf and install features
+#### Install opendaylight karaf and install features  （Boron-SR2)
 #### Build Virl network topology
 #### BGP link state with Opendaylight controller
 #### BGP monitor with opendaylight
