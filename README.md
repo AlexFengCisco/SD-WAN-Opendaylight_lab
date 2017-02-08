@@ -2,6 +2,7 @@
 
 #### Install opendaylight karaf and install features  （Boron-SR2)
 #### Build Virl network topology
+Cisco IOS XR Software, Version 6.0.1
 #### BGP link state with Opendaylight controller
 #### BGP monitor with opendaylight
 #### BGP route inject with opendaylight
