@@ -1,0 +1,106 @@
+
+#-------------ASR9Kv-----------------------------------
+mpls traffic-eng
+ interface GigabitEthernet0/0/0/0
+ !
+ interface GigabitEt/Users/AlexFeng/Documents/Cisco_Projects/CCB/CCB HQ/CCB Backbone Core/CCB Backbone SDN 20170110/OpenDaylight_PCEP_MPLS_TEhernet0/0/0/1
+ !
+ interface GigabitEthernet0/0/0/2
+ !
+ interface GigabitEthernet0/0/0/3
+ !
+ pce      
+  peer ipv4 172.16.1.254
+  !       
+  stateful-client
+   instantiation
+   delegation
+  !       
+ !        
+ auto-tunnel pcc
+  tunnel-id min 7000 max 9999
+ !        
+!         
+
+
+#--------GET PCEP topology by default
+
+http://10.75.195.240:8181/restconf/operational/network-topology:network-topology/topology/pcep-topology
+
+#result -----
+
+{
+  "topology": [
+    {
+      "topology-id": "pcep-topology",
+      "node": [
+        {
+          "node-id": "pcc://192.168.0.3",
+          "network-topology-pcep:path-computation-client": {
+            "stateful-tlv": {
+              "odl-pcep-ietf-stateful07:stateful": {
+                "lsp-update-capability": true,
+                "odl-pcep-ietf-initiated00:initiation": true
+              }
+            },
+            "ip-address": "192.168.0.3",
+            "state-sync": "synchronized"
+          }
+        }
+      ],
+      "topology-types": {
+        "network-topology-pcep:topology-pcep": {}
+      }
+    }
+  ]
+}
+
+
+
+#------------------PCE-initiated LSP Setup-------------
+http://10.75.195.240:8181/restconf/operations/network-topology-pcep:add-lsp
+
+
+<input xmlns="urn:opendaylight:params:xml:ns:yang:topology:pcep">
+   <node>pcc://192.168.0.3</node>
+   <name>update-tunel-01</name>
+      <arguments>
+         <lsp xmlns="urn:opendaylight:params:xml:ns:yang:pcep:ietf:stateful">
+            <delegate>true</delegate>
+            <administrative>true</administrative>
+         </lsp>
+         <endpoints-obj>
+            <ipv4>
+               <source-ipv4-address>192.168.0.3</source-ipv4-address>
+               <destination-ipv4-address>192.168.0.6</destination-ipv4-address>
+            </ipv4>
+         </endpoints-obj>
+         <ero>
+            <subobject>
+               <loose>false</loose>
+               <ip-prefix>
+                  <ip-prefix>192.168.0.3/32</ip-prefix>
+               </ip-prefix>
+            </subobject>
+            <subobject>
+               <loose>false</loose>
+               <ip-prefix>
+                  <ip-prefix>192.168.0.5/32</ip-prefix>
+               </ip-prefix>
+            </subobject>
+            <subobject>
+               <loose>false</loose>
+               <ip-prefix>
+                  <ip-prefix>192.168.0.6/32</ip-prefix>
+               </ip-prefix>
+            </subobject>
+         </ero>
+      </arguments>
+   <network-topology-ref xmlns:topo="urn:TBD:params:xml:ns:yang:network-topology">/topo:network-topology/topo:topology[topo:topology-id="pcep-topology"]</network-topology-ref>
+</input>
+
+
+
+
+
+

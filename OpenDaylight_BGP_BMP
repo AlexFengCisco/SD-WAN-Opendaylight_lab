@@ -1,0 +1,646 @@
+
+###---config IOS XR 9kV for BMP-----
+
+
+bmp server 1
+ host 172.16.1.254 port 12345  #default bmp port 12345
+ update-source Loopback0
+!
+
+#--BGP part configuration----
+
+neighbor 192.168.0.4
+  remote-as 1
+  description iBGP peer iosxrv9000-2
+  bmp-activate server 1
+  update-source Loopback0
+  address-family ipv4 unicast
+  !       
+ !        
+ neighbor 192.168.0.5
+  remote-as 1
+  description iBGP peer iosxrv9000-3
+  bmp-activate server 1
+  update-source Loopback0
+  address-family ipv4 unicast
+  !       
+ !        
+ neighbor 192.168.0.6
+  remote-as 1
+  description iBGP peer iosxrv9000-4
+  bmp-activate server 1
+  update-source Loopback0
+  address-family ipv4 unicast
+  !       
+
+
+#### Opendaylight install BMP ad rest-conf
+feature:install odl-restconf odl-bgpcep-bmp
+
+#--check example BMP instance GET
+
+http://10.75.195.240:8181/restconf/operational/bmp-monitor:bmp-monitor/monitor/example-bmp-monitor
+
+
+###----PUT Active  Opendaylight BMP------
+
+http://10.75.195.240:8181/restconf/config/network-topology:network-topology/topology/topology-netconf/node/controller-config/yang-ext:mount/config:modules/config:module/odl-bmp-impl-cfg:bmp-monitor-impl/example-bmp-monitor
+
+
+#####-----GET BGP  BMP client information ----
+http://10.75.195.240:8181/restconf/operational/bmp-monitor:bmp-monitor/monitor/example-bmp-monitor
+
+response 
+
+{
+  "monitor": [
+    {
+      "monitor-id": "example-bmp-monitor",
+      "router": [
+        {
+          "router-id": "192.168.0.3",
+          "peer": [
+            {
+              "peer-id": "192.168.0.4",
+              "pre-policy-rib": {
+                "tables": [
+                  {
+                    "afi": "bgp-types:ipv4-address-family",
+                    "safi": "bgp-types:unicast-subsequent-address-family",
+                    "bgp-inet:ipv4-routes": {
+                      "ipv4-route": [
+                        {
+                          "path-id": 0,
+                          "prefix": "192.168.0.4/32",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "igp"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.4"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        },
+                        {
+                          "path-id": 0,
+                          "prefix": "100.100.100.0/24",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "igp"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.4"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        },
+                        {
+                          "path-id": 0,
+                          "prefix": "172.16.1.0/24",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "incomplete"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.4"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        },
+                        {
+                          "path-id": 0,
+                          "prefix": "10.0.0.20/30",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "incomplete"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.4"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        },
+                        {
+                          "path-id": 0,
+                          "prefix": "10.0.0.12/30",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "incomplete"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.4"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "attributes": {
+                      "uptodate": false
+                    }
+                  }
+                ]
+              },
+              "type": "global",
+              "as": 1,
+              "peer-session": {
+                "received-open": {
+                  "my-as-number": 1,
+                  "bgp-identifier": "192.168.0.4",
+                  "hold-timer": 180,
+                  "bgp-parameters": [
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "multiprotocol-capability": {
+                              "safi": "bgp-types:unicast-subsequent-address-family",
+                              "afi": "bgp-types:ipv4-address-family"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {},
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "route-refresh-capability": {}
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "as4-bytes-capability": {
+                              "as-number": 1
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "local-address": "192.168.0.3",
+                "status": "up",
+                "sent-open": {
+                  "my-as-number": 1,
+                  "bgp-identifier": "192.168.0.3",
+                  "hold-timer": 180,
+                  "bgp-parameters": [
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "multiprotocol-capability": {
+                              "safi": "bgp-types:unicast-subsequent-address-family",
+                              "afi": "bgp-types:ipv4-address-family"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {},
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "route-refresh-capability": {}
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "as4-bytes-capability": {
+                              "as-number": 1
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "timestamp-sec": 1486264414,
+                "local-port": 16688,
+                "remote-port": 179
+              },
+              "bgp-id": "192.168.0.4",
+              "post-policy-rib": {
+                "tables": [
+                  {
+                    "afi": "bgp-types:ipv4-address-family",
+                    "safi": "bgp-types:unicast-subsequent-address-family",
+                    "bgp-inet:ipv4-routes": {},
+                    "attributes": {
+                      "uptodate": false
+                    }
+                  }
+                ]
+              },
+              "address": "192.168.0.4"
+            },
+            {
+              "peer-id": "192.168.0.5",
+              "pre-policy-rib": {
+                "tables": [
+                  {
+                    "afi": "bgp-types:ipv4-address-family",
+                    "safi": "bgp-types:unicast-subsequent-address-family",
+                    "bgp-inet:ipv4-routes": {
+                      "ipv4-route": [
+                        {
+                          "path-id": 0,
+                          "prefix": "192.168.0.5/32",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "igp"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.5"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "attributes": {
+                      "uptodate": false
+                    }
+                  }
+                ]
+              },
+              "type": "global",
+              "as": 1,
+              "peer-session": {
+                "received-open": {
+                  "my-as-number": 1,
+                  "bgp-identifier": "192.168.0.5",
+                  "hold-timer": 180,
+                  "bgp-parameters": [
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "multiprotocol-capability": {
+                              "safi": "bgp-types:unicast-subsequent-address-family",
+                              "afi": "bgp-types:ipv4-address-family"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {},
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "route-refresh-capability": {}
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "as4-bytes-capability": {
+                              "as-number": 1
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "local-address": "192.168.0.3",
+                "status": "up",
+                "sent-open": {
+                  "my-as-number": 1,
+                  "bgp-identifier": "192.168.0.3",
+                  "hold-timer": 180,
+                  "bgp-parameters": [
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "multiprotocol-capability": {
+                              "safi": "bgp-types:unicast-subsequent-address-family",
+                              "afi": "bgp-types:ipv4-address-family"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {},
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "route-refresh-capability": {}
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "as4-bytes-capability": {
+                              "as-number": 1
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "timestamp-sec": 1486264414,
+                "local-port": 32276,
+                "remote-port": 179
+              },
+              "bgp-id": "192.168.0.5",
+              "post-policy-rib": {
+                "tables": [
+                  {
+                    "afi": "bgp-types:ipv4-address-family",
+                    "safi": "bgp-types:unicast-subsequent-address-family",
+                    "bgp-inet:ipv4-routes": {},
+                    "attributes": {
+                      "uptodate": false
+                    }
+                  }
+                ]
+              },
+              "address": "192.168.0.5"
+            },
+            {
+              "peer-id": "192.168.0.6",
+              "pre-policy-rib": {
+                "tables": [
+                  {
+                    "afi": "bgp-types:ipv4-address-family",
+                    "safi": "bgp-types:unicast-subsequent-address-family",
+                    "bgp-inet:ipv4-routes": {
+                      "ipv4-route": [
+                        {
+                          "path-id": 0,
+                          "prefix": "10.0.0.24/30",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "incomplete"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.6"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        },
+                        {
+                          "path-id": 0,
+                          "prefix": "192.168.0.6/32",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "igp"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.6"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        },
+                        {
+                          "path-id": 0,
+                          "prefix": "10.0.0.8/30",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "incomplete"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.6"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        },
+                        {
+                          "path-id": 0,
+                          "prefix": "23.23.23.23/32",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "incomplete"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.6"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        },
+                        {
+                          "path-id": 0,
+                          "prefix": "10.0.0.20/30",
+                          "attributes": {
+                            "as-path": {},
+                            "origin": {
+                              "value": "incomplete"
+                            },
+                            "local-pref": {
+                              "pref": 100
+                            },
+                            "ipv4-next-hop": {
+                              "global": "192.168.0.6"
+                            },
+                            "multi-exit-disc": {
+                              "med": 0
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "attributes": {
+                      "uptodate": false
+                    }
+                  }
+                ]
+              },
+              "type": "global",
+              "as": 1,
+              "peer-session": {
+                "received-open": {
+                  "my-as-number": 1,
+                  "bgp-identifier": "192.168.0.6",
+                  "hold-timer": 180,
+                  "bgp-parameters": [
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "multiprotocol-capability": {
+                              "safi": "bgp-types:unicast-subsequent-address-family",
+                              "afi": "bgp-types:ipv4-address-family"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {},
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "route-refresh-capability": {}
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "as4-bytes-capability": {
+                              "as-number": 1
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "local-address": "192.168.0.3",
+                "status": "up",
+                "sent-open": {
+                  "my-as-number": 1,
+                  "bgp-identifier": "192.168.0.3",
+                  "hold-timer": 180,
+                  "bgp-parameters": [
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "multiprotocol-capability": {
+                              "safi": "bgp-types:unicast-subsequent-address-family",
+                              "afi": "bgp-types:ipv4-address-family"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {},
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "route-refresh-capability": {}
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "optional-capabilities": [
+                        {
+                          "c-parameters": {
+                            "as4-bytes-capability": {
+                              "as-number": 1
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "timestamp-sec": 1486264414,
+                "local-port": 179,
+                "remote-port": 18222
+              },
+              "bgp-id": "192.168.0.6",
+              "post-policy-rib": {
+                "tables": [
+                  {
+                    "afi": "bgp-types:ipv4-address-family",
+                    "safi": "bgp-types:unicast-subsequent-address-family",
+                    "bgp-inet:ipv4-routes": {},
+                    "attributes": {
+                      "uptodate": false
+                    }
+                  }
+                ]
+              },
+              "address": "192.168.0.6"
+            }
+          ],
+          "status": "up",
+          "name": "172.16.1.254",
+          "description": " 6.0.1",
+          "info": ""
+        }
+      ]
+    }
+  ]
+}
+
+

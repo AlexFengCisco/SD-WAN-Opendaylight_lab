@@ -1,0 +1,242 @@
+RP/0/RP0/CPU0:172.16.1.254#sh run
+Tue Feb  7 11:11:49.984 UTC
+Building configuration...
+!! IOS XR Configuration version = 6.0.1
+!! Last configuration change at Tue Feb  7 11:06:39 2017 by cisco
+!
+!  IOS-XR9000v Config generated on 2017-01-22 02:18
+! by autonetkit_0.23.5
+hostname 172.16.1.254
+service timestamps log datetime msec
+service timestamps debug datetime msec
+telnet vrf default ipv4 server max-servers 10
+telnet vrf Mgmt-intf ipv4 server max-servers 10
+domain name virl.info
+domain lookup disable
+username cisco
+ group root-lr
+ group cisco-support
+ password 7 13061E010803
+!
+username admin
+ group root-lr
+ group cisco-support
+ password 7 1304131F0202
+!
+username lab
+ group root-lr
+ group cisco-support
+ password 7 060A0E23
+!
+cdp
+explicit-path name to6via4
+ index 10 next-address strict ipv4 unicast 10.0.0.14
+ index 20 next-label 16044
+!
+explicit-path name to6via5
+ index 10 next-address strict ipv4 unicast 10.0.0.18
+ index 20 next-label 16044
+!         
+explicit-path name to6via402
+ index 10 next-label 16042
+ index 20 next-label 16044
+!
+line template vty
+ timestamp
+ exec-timeout 720 0
+!
+line console
+ exec-timeout 0 0
+!
+line default
+ exec-timeout 720 0
+!
+vty-pool default 0 50
+ipv4 unnumbered mpls traffic-eng Loopback0
+call-home
+ service active
+ contact smart-licensing
+ profile CiscoTAC-1
+  active
+  destination transport-method http
+ !
+!
+control-plane
+ management-plane
+  inband
+   interface all
+    allow all
+   !
+  !
+ !
+!
+interface Loopback0
+ description Loopback
+ ipv4 address 192.168.0.3 255.255.255.255
+!
+interface Loopback1
+ ipv4 address 123.123.123.123 255.255.255.255
+!
+interface tunnel-te200
+ ipv4 unnumbered Loopback0
+ destination 192.168.0.6
+ path-option 1 explicit name to6via4 segment-routing verbatim
+ path-option 2 explicit name to6via5 segment-routing verbatim
+!
+interface MgmtEth0/RP0/CPU0/0
+ description OOB Management
+ cdp
+ ! Configured on launch
+ vrf Mgmt-intf
+ ipv4 address 10.255.0.25 255.255.0.0
+!
+interface GigabitEthernet0/0/0/0
+ description to iosv-1
+ cdp
+ ipv4 address 10.0.0.6 255.255.255.252
+!
+interface GigabitEthernet0/0/0/1
+ description to iosxrv9000-2
+ cdp
+ ipv4 address 10.0.0.13 255.255.255.252
+!
+interface GigabitEthernet0/0/0/2
+ description to iosxrv9000-3
+ cdp
+ ipv4 address 10.0.0.17 255.255.255.252
+!
+interface GigabitEthernet0/0/0/3
+ description GigabitEthernet0/0/0/3
+ cdp
+!
+route-policy bgp_in
+  pass
+end-policy
+!
+route-policy bgp_out
+  pass
+end-policy
+!
+router static
+ address-family ipv4 unicast
+  22.22.22.22/32 tunnel-te504
+ !
+!
+router ospf 1
+ log adjacency changes
+ segment-routing mpls
+ segment-routing forwarding mpls
+ fast-reroute per-prefix
+ fast-reroute per-prefix ti-lfa enable
+ area 0
+  mpls traffic-eng
+  interface Loopback0
+   passive enable
+   prefix-sid absolute 16041
+  !
+  interface GigabitEthernet0/0/0/0
+   cost 1
+   fast-reroute per-prefix ti-lfa enable
+  !
+  interface GigabitEthernet0/0/0/1
+   cost 1
+   network point-to-point
+   fast-reroute per-prefix ti-lfa enable
+  !
+  interface GigabitEthernet0/0/0/2
+   cost 1
+   network point-to-point
+   fast-reroute per-prefix ti-lfa enable
+  !
+ !
+ mpls traffic-eng router-id Loopback0
+!
+vrf Mgmt-intf
+ address-family ipv4 unicast
+ !
+ address-family ipv6 unicast
+ !
+!
+router bgp 1
+ bgp router-id 192.168.0.3
+ address-family ipv4 unicast
+  network 192.168.0.3/32
+  redistribute connected route-policy bgp_in
+ !
+ ! iBGP
+ ! iBGP peers
+ neighbor 192.168.0.1
+  remote-as 1
+  description iBGP peer iosv-1
+  update-source Loopback0
+  address-family ipv4 unicast
+  !
+ !
+ neighbor 192.168.0.2
+  remote-as 1
+  description iBGP peer iosv-2
+  update-source Loopback0
+  address-family ipv4 unicast
+  !
+ !
+ neighbor 192.168.0.4
+  remote-as 1
+  description iBGP peer iosxrv9000-2
+  bmp-activate server 1
+  update-source Loopback0
+  address-family ipv4 unicast
+  !
+ !
+ neighbor 192.168.0.5
+  remote-as 1
+  description iBGP peer iosxrv9000-3
+  bmp-activate server 1
+  update-source Loopback0
+  address-family ipv4 unicast
+  !
+ !
+ neighbor 192.168.0.6
+  remote-as 1
+  description iBGP peer iosxrv9000-4
+  bmp-activate server 1
+  update-source Loopback0
+  address-family ipv4 unicast
+  !
+ !
+!
+bmp server 1
+ host 172.16.1.254 port 12345
+ update-source Loopback0
+!
+mpls oam
+!
+mpls traffic-eng
+ interface GigabitEthernet0/0/0/0
+ !
+ interface GigabitEthernet0/0/0/1
+ !
+ interface GigabitEthernet0/0/0/2
+ !
+ interface GigabitEthernet0/0/0/3
+ !
+ pce
+  peer source ipv4 192.168.0.3
+  peer ipv4 172.16.1.254
+  !
+  segment-routing
+  stateful-client
+   instantiation
+   delegation
+  !
+ !
+ auto-tunnel pcc
+  tunnel-id min 500 max 4096
+ !
+!
+ssh server v2
+ssh server vrf Mgmt-intf
+segment-routing
+!
+end
+
+RP/0/RP0/CPU0:172.16.1.254# 
