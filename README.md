@@ -18,4 +18,5 @@ redistribute OSPF linkstate to BGP and send to Opendaylight controller .
 iosxrv9000-1 configed as BMP client , opendaylight in flat-1 network as BMP server to collect BGP data.
 
 iosxrv9000-1 configed as PCC conected to opendaylight as PCE , opendaylight create LSP and push to PCC.
- 
+
+### BGP flowSpec is coming soon ;-)) 
