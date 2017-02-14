@@ -292,6 +292,79 @@ http://10.75.195.240:8181/restconf/operational/network-topology:network-topology
   ]
 }
 
+######sh mpls traffic enginnering tunnels ----------------
+RP/0/RP0/CPU0:iosxrv9000-1#sh mpls traffic-eng tunnels 7007 detail 
+Tue Feb 14 12:53:53.209 UTC
 
+
+Name: tunnel-te7007  Destination: 192.168.0.6  Ifhandle:0x8000084 (auto-tunnel pcc)
+  Signalled-Name: rsvp-te2
+  Status:
+    Admin:    up Oper:   up   Path:  valid   Signalling: connected
+
+    path option 10, (verbatim) type explicit (autopcc_te7007) (Basis for Setup, path weight 0)
+    G-PID: 0x0800 (derived from egress interface properties)
+    Bandwidth Requested: 0 kbps  CT0
+    Creation Time: Tue Feb 14 12:44:05 2017 (00:09:50 ago)
+  Config Parameters:
+    Bandwidth:        0 kbps (CT0) Priority:  7  7 Affinity: 0x0/0xffff
+    Metric Type: TE (global)
+    Path Selection:
+      Tiebreaker: Min-fill (default)
+    Hop-limit: disabled
+    Cost-limit: disabled
+    Path-invalidation timeout: 10000 msec (default), Action: Tear (default)
+    AutoRoute: disabled  LockDown: disabled   Policy class: not set
+    Forward class: 0 (default)
+    Forwarding-Adjacency: disabled
+    Autoroute Destinations: 0
+    Loadshare:          0 equal loadshares
+    Auto-bw: disabled
+    Fast Reroute: Disabled, Protection Desired: None
+    Path Protection: Not Enabled
+    BFD Fast Detection: Disabled
+    Reoptimization after affinity failure: Enabled
+    Soft Preemption: Disabled
+  Auto PCC: 
+    Symbolic name: rsvp-te2
+    PCEP ID: 7008
+    Delegated to: 172.16.1.254
+    Created by: 172.16.1.254
+  PCE Delegation: 
+    Symbolic name: rsvp-te2
+    PCEP ID: 7008
+    Delegated to: 172.16.1.254
+  SNMP Index: 17
+  Binding SID: 24019
+  History:
+    Tunnel has been up for: 00:09:50 (since Tue Feb 14 12:44:05 UTC 2017)
+    Current LSP:
+      Uptime: 00:09:49 (since Tue Feb 14 12:44:06 UTC 2017)
+    Prior LSP:
+      ID: 2 Path Option: 10
+      Removal Trigger: reoptimization completed
+  Current LSP Info: 
+    Instance: 3, Signaling Area: PCE controlled
+    Uptime: 00:09:49 (since Tue Feb 14 12:44:06 UTC 2017)
+    Outgoing Interface: GigabitEthernet0/0/0/2, Outgoing Label: 24014
+    Router-IDs: local      192.168.0.3
+                downstream 192.168.0.5
+    Soft Preemption: None
+    SRLGs: not collected
+    Path Info:
+      Outgoing:
+        Explicit Route:
+          Strict, 192.168.0.5
+          Strict, 192.168.0.6
+
+      Record Route: Disabled
+      Tspec: avg rate=0 kbits, burst=1000 bytes, peak rate=0 kbits
+      Session Attributes: Local Prot: Not Set, Node Prot: Not Set, BW Prot: Not Set
+                          Soft Preemption Desired: Not Set
+    Resv Info: None
+      Record Route: Disabled
+      Fspec: avg rate=0 kbits, burst=1000 bytes, peak rate=0 kbits
+Displayed 1 (of 2) heads, 0 (of 0) midpoints, 0 (of 0) tails
+Displayed 1 up, 0 down, 0 recovering, 0 recovered heads
 
 
