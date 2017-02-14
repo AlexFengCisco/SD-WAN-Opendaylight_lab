@@ -23,6 +23,12 @@ mpls traffic-eng
 !         
 
 
+#####tips  important ,or you can not build LSP , will shown :can not establish connection , reason no source ip address!!!!!!!!!---------------
+
+#####IOSXR global config !!!!!
+ipv4 unnumbered mpls traffic-eng Loopback0
+
+
 #--------GET PCEP topology by default
 
 http://10.75.195.240:8181/restconf/operational/network-topology:network-topology/topology/pcep-topology
