@@ -105,7 +105,192 @@ http://10.75.195.240:8181/restconf/operations/network-topology-pcep:add-lsp
    <network-topology-ref xmlns:topo="urn:TBD:params:xml:ns:yang:network-topology">/topo:network-topology/topo:topology[topo:topology-id="pcep-topology"]</network-topology-ref>
 </input>
 
+#######-----GET PCEP topology to parse auto tunnel id , will be netconf a static route to TE tunnel later ......
+http://10.75.195.240:8181/restconf/operational/network-topology:network-topology/topology/pcep-topology
 
+{
+  "topology": [
+    {
+      "topology-id": "pcep-topology",
+      "node": [
+        {
+          "node-id": "pcc://192.168.0.3",
+          "network-topology-pcep:path-computation-client": {
+            "stateful-tlv": {
+              "odl-pcep-ietf-stateful07:stateful": {
+                "lsp-update-capability": true,
+                "odl-pcep-ietf-initiated00:initiation": true
+              }
+            },
+            "ip-address": "192.168.0.3",
+            "reported-lsp": [
+              {
+                "name": "iosxrv9000-1_t1",
+                "path": [
+                  {
+                    "lsp-id": 3,
+                    "ero": {
+                      "ignore": false,
+                      "processing-rule": false,
+                      "subobject": [
+                        {
+                          "loose": false,
+                          "ip-prefix": {
+                            "ip-prefix": "10.0.0.18/32"
+                          }
+                        },
+                        {
+                          "loose": false,
+                          "ip-prefix": {
+                            "ip-prefix": "10.0.0.25/32"
+                          }
+                        },
+                        {
+                          "loose": false,
+                          "ip-prefix": {
+                            "ip-prefix": "10.0.0.26/32"
+                          }
+                        },
+                        {
+                          "loose": false,
+                          "ip-prefix": {
+                            "ip-prefix": "192.168.0.6/32"
+                          }
+                        }
+                      ]
+                    },
+                    "lspa": {
+                      "tlvs": {},
+                      "local-protection-desired": false,
+                      "include-all": 0,
+                      "exclude-any": 0,
+                      "hold-priority": 7,
+                      "include-any": 0,
+                      "ignore": false,
+                      "processing-rule": false,
+                      "setup-priority": 7
+                    },
+                    "odl-pcep-ietf-stateful07:lsp": {
+                      "ignore": false,
+                      "operational": "up",
+                      "administrative": true,
+                      "tlvs": {
+                        "path-binding": {
+                          "binding-value": "AAAF3A==",
+                          "mpls-label": 24014,
+                          "binding-type": 0
+                        },
+                        "lsp-identifiers": {
+                          "lsp-id": 3,
+                          "tunnel-id": 1,
+                          "ipv4": {
+                            "ipv4-tunnel-sender-address": "192.168.0.3",
+                            "ipv4-extended-tunnel-id": "192.168.0.6",
+                            "ipv4-tunnel-endpoint-address": "192.168.0.6"
+                          }
+                        },
+                        "symbolic-path-name": {
+                          "path-name": "aW9zeHJ2OTAwMC0xX3Qx"
+                        }
+                      },
+                      "delegate": true,
+                      "odl-pcep-ietf-initiated00:create": false,
+                      "processing-rule": false,
+                      "plsp-id": 2,
+                      "remove": false,
+                      "sync": false
+                    },
+                    "bandwidth": {
+                      "ignore": false,
+                      "processing-rule": false,
+                      "bandwidth": "RJxAAA=="
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "rsvp-te2",
+                "path": [
+                  {
+                    "lsp-id": 3,
+                    "ero": {
+                      "ignore": false,
+                      "processing-rule": false,
+                      "subobject": [
+                        {
+                          "loose": false,
+                          "ip-prefix": {
+                            "ip-prefix": "192.168.0.5/32"
+                          }
+                        },
+                        {
+                          "loose": false,
+                          "ip-prefix": {
+                            "ip-prefix": "192.168.0.6/32"
+                          }
+                        }
+                      ]
+                    },
+                    "lspa": {
+                      "tlvs": {},
+                      "local-protection-desired": false,
+                      "include-all": 0,
+                      "exclude-any": 0,
+                      "hold-priority": 7,
+                      "include-any": 0,
+                      "ignore": false,
+                      "processing-rule": false,
+                      "setup-priority": 7
+                    },
+                    "odl-pcep-ietf-stateful07:lsp": {
+                      "ignore": false,
+                      "operational": "up",
+                      "administrative": true,
+                      "tlvs": {
+                        "path-binding": {
+                          "binding-value": "AAAF3Q==",
+                          "mpls-label": 24019,
+                          "binding-type": 0
+                        },
+                        "lsp-identifiers": {
+                          "lsp-id": 3,
+                          "tunnel-id": 7007,
+                          "ipv4": {
+                            "ipv4-tunnel-sender-address": "192.168.0.3",
+                            "ipv4-extended-tunnel-id": "192.168.0.6",
+                            "ipv4-tunnel-endpoint-address": "192.168.0.6"
+                          }
+                        },
+                        "symbolic-path-name": {
+                          "path-name": "cnN2cC10ZTI="
+                        }
+                      },
+                      "delegate": true,
+                      "odl-pcep-ietf-initiated00:create": true,
+                      "processing-rule": false,
+                      "plsp-id": 7008,
+                      "remove": false,
+                      "sync": false
+                    },
+                    "bandwidth": {
+                      "ignore": false,
+                      "processing-rule": false,
+                      "bandwidth": "AAAAAA=="
+                    }
+                  }
+                ]
+              }
+            ],
+            "state-sync": "synchronized"
+          }
+        }
+      ],
+      "topology-types": {
+        "network-topology-pcep:topology-pcep": {}
+      }
+    }
+  ]
+}
 
 
 
