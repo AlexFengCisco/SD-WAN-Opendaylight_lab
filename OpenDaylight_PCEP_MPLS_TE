@@ -21,12 +21,15 @@ mpls traffic-eng
   tunnel-id min 7000 max 9999
  !        
 !         
-
+#####tips , unsent PCEP add lsp , debug ---debug mpls traffic engineer PCE , will find some message 'can not setup tunnel due to allcatte tunnel id etc......
+reason , config missed mpls traffic engineering --->auto-tunnel pcc -->tunnel id min xxx max xxx  
 
 #####tips  important ,or you can not build LSP , will shown :can not establish connection , reason no source ip address!!!!!!!!!---------------
 
-#####IOSXR global config !!!!!
+#####IOSXR global config !!!!!  
 ipv4 unnumbered mpls traffic-eng Loopback0
+
+#####
 
 
 #--------GET PCEP topology by default

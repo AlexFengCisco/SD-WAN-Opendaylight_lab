@@ -20,4 +20,4 @@ iosxrv9000-1 configed as BMP client , opendaylight in flat-1 network as BMP serv
 
 iosxrv9000-1 configed as PCC conected to opendaylight as PCE , opendaylight create LSP and push to PCC.
 
-### BGP flowSpec is coming soon ;-)) 
+### IOS XR 9kv dosen't support BGP flowSpec install local interface operation .......
