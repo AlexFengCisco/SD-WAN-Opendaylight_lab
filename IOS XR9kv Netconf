@@ -1,0 +1,229 @@
+
+
+ESXi 1075.195.237  username root password rootpass
+vcenter 10.124.3.111 username administrator@vcenter.local password C1sc0123!@#
+
+
+CVM01 10.75.195.240   172.16.1.254       XR9000V-2 172.16.1.85
+
+VIRL 10.75.195.241  uwmamin password 
+
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 cisco@192.168.0.3 -s netconf 
+
+
+##-----for older style early 2014
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 cisco@192.168.0.3 netconf format
+
+
+
+######-------reply with hello message
+
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+	<capabilities>
+		<capability>urn:ietf:params:netconf:base:1.0</capability>
+		<capability>urn:ietf:params:netconf:base:1.1</capability>
+	</capabilities>
+</hello>]]>]]>
+
+
+#---------modern style----------------------------------------
+#171
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+    <get-config><source><running/></source></get-config>
+</rpc>
+##
+
+
+
+#147
+<?xml version="1.0" encoding="UTF-8"?>
+    <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="0">
+        <close-session/>
+    </rpc>
+##
+
+#--------modern style-------------------------------------------------
+
+####------------------------
+
+####------config tty to parse XML from latest commit action------
+(config)#xml agent tty
+
+#sh configuratiion commit list 
+
+#xml echo format
+
+
+<?xml version="1.0"?>
+<Request>
+  <Get>
+    <Configuration Source="CommitChanges" ForCommitID="1000000040"/>
+  </Get>
+</Request>
+
+
+
+#------------------------------------------------------------
+
+##-------check embeded XML schema-----------
+RP/0/0/CPU0:iosxrv-1#sh xml schema
+xml-schema[config]:> oper
+xml-schema[oper]:> ls
+[container]                  AAA
+[container]                  AIB
+[container]                  ARP_GMP
+[container]                  ARP
+[container]                  BGP
+
+
+
+
+
+
+
+#######-----------************must be intended carefully!!!!!!______________-
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+	<get-config>
+		<source>
+			<running/>
+		</source>
+		<filter>
+			<Configuration>
+			</Configuration>
+		</filter>
+	</get-config>
+</rpc>]]>]]>
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+	<get-config>
+	<source>
+		<running/>
+	</source>
+	<filter>
+		<Configuration>
+			<InterfaceConfigurationTable>
+                <InterfaceConfiguration>
+                    <Naming>
+                      <Active>act</Active>
+                      <InterfaceName Match="GigabitEthernet.*"/>
+                    </Naming>
+                </InterfaceConfiguration>
+            </InterfaceConfigurationTable>
+		</Configuration>
+	</filter>
+	</get-config>
+</rpc>]]>]]> 
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<Configuration>
+            <InterfaceConfigurationTable>
+                <InterfaceConfiguration>
+                    <Naming>
+                        <Active>
+                            act
+                        </Active>
+                        <InterfaceName>
+                            Loopback2
+                        </InterfaceName>
+                    </Naming>
+                    <InterfaceVirtual>
+                        true
+                    </InterfaceVirtual>
+                    <Description>
+                        Loopback
+                    </Description>
+                    <IPV4Network MajorVersion="6" MinorVersion="3">
+                        <Addresses>
+                            <Primary>
+                                <Address>
+                                    192.168.8.1
+                                </Address>
+                                <Netmask>
+                                    255.255.255.255
+                                </Netmask>
+                            </Primary>
+                        </Addresses>
+                    </IPV4Network>
+                </InterfaceConfiguration>
+            </InterfaceConfigurationTable>
+</Configuration>
+</config>
+</edit-config>
+<commit/>
+</rpc>]]>]]>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="102" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<Configuration>
+			<RouterStatic MajorVersion="4" MinorVersion="0">
+                <DefaultVRF>
+                    <AddressFamily>
+                        <VRFIPV4>
+                            <VRFUnicast>
+                                <VRFPrefixTable>
+                                    <VRFPrefix>
+                                        <Naming>
+                                            <Prefix>
+                                                <IPV4Address>
+                                                    2.2.2.2
+                                                </IPV4Address>
+                                            </Prefix>
+                                            <PrefixLength>
+                                                32
+                                            </PrefixLength>
+                                        </Naming>
+                                        <VRFRoute>
+                                            <VRFNextHopTable>
+                                                <VRFNextHop>
+                                                    <Naming>
+                                                        <InterfaceName>
+                                                            tunnel-te7007
+                                                        </InterfaceName>
+                                                    </Naming>
+                                                </VRFNextHop>
+                                            </VRFNextHopTable>
+                                        </VRFRoute>
+                                    </VRFPrefix>
+                                </VRFPrefixTable>
+                            </VRFUnicast>
+                        </VRFIPV4>
+                    </AddressFamily>
+                </DefaultVRF>
+            </RouterStatic>
+</Configuration>
+</config>
+</edit-config>
+<commit/>
+</rpc>]]>]]>
+
+
+<?xml version="1.0"?>
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"><close-session/></rpc>]]>]]>
+
+
+
+
+
+
