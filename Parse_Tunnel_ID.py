@@ -1,4 +1,11 @@
 '''
+
+IOS XR
+Netconf query to get Tunnel tables , parese the tables XML and get the tunnel ID , 
+Netconf setup static route to Tunnel ID
+Traffice engineering done
+
+
 Created on Jan 15, 2016
 
 @author: AlexFeng
@@ -6,6 +13,57 @@ Created on Jan 15, 2016
 import paramiko
 import time
 import xml.etree.cElementTree as ET
+
+Set_route_TE='''<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="102" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<Configuration>
+            <RouterStatic MajorVersion="4" MinorVersion="0">
+                <DefaultVRF>
+                    <AddressFamily>
+                        <VRFIPV4>
+                            <VRFUnicast>
+                                <VRFPrefixTable>
+                                    <VRFPrefix>
+                                        <Naming>
+                                            <Prefix>
+                                                <IPV4Address>
+                                                    2.2.2.2
+                                                </IPV4Address>
+                                            </Prefix>
+                                            <PrefixLength>
+                                                32
+                                            </PrefixLength>
+                                        </Naming>
+                                        <VRFRoute>
+                                            <VRFNextHopTable>
+                                                <VRFNextHop>
+                                                    <Naming>
+                                                        <InterfaceName>
+                                                            tunnel-te%s
+                                                        </InterfaceName>
+                                                    </Naming>
+                                                </VRFNextHop>
+                                            </VRFNextHopTable>
+                                        </VRFRoute>
+                                    </VRFPrefix>
+                                </VRFPrefixTable>
+                            </VRFUnicast>
+                        </VRFIPV4>
+                    </AddressFamily>
+                </DefaultVRF>
+            </RouterStatic>
+</Configuration>
+</config>
+</edit-config>
+<commit/>
+</rpc>]]>]]>'''
+
+
 
 Get_PCEP_LSP='''<?xml version="1.0" encoding="UTF-8"?>
 <rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -20,7 +78,7 @@ Get_PCEP_LSP='''<?xml version="1.0" encoding="UTF-8"?>
     </get>
 </rpc>]]>]]>'''
 
-Result='''<?xml version="1.0" encoding="UTF-8"?>
+Get_PCEP_LSP_Result='''<?xml version="1.0" encoding="UTF-8"?>
 <rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
     <data>
         <Operational>
@@ -321,7 +379,7 @@ Result='''<?xml version="1.0" encoding="UTF-8"?>
 ]]>]]>'''
 
 
-rsxmlstr=Result[:-6]
+rsxmlstr=Get_PCEP_LSP_Result[:-6]
 print rsxmlstr
 print "####After cut the tail length :"+str(len(rsxmlstr))
 
@@ -332,9 +390,11 @@ for child in tree.iter():
     if child.tag=='{urn:ietf:params:xml:ns:netconf:base:1.0}TunnelID' :
         print "Tunnel id :"+child.text+"  Lenth:"+str(len(child.text))
         print type(child.text)
-        print child.text[33:-29]
+        tunnel_id=child.text[33:-29]
+        print tunnel_id
         print len(child.text[33:-29])
     if child.tag=='{urn:ietf:params:xml:ns:netconf:base:1.0}SymbolicName' :
         print "Path Naming:"+child.text+"  Lenth:"+str(len(child.text))
-           
+        
+print Set_route_TE%(tunnel_id)   #Netconf XML to setup static route to PCC auto tunnel id
         
