@@ -8,6 +8,7 @@
 #####BGP route inject with opendaylight
 #####PCEP MPLS RSVP traffic engineering 
 #####PCEP segment routing traffic engineering
+#####Netconf edit configuration to create service ,direct traffic to LSP tunnel etc.
 
 ### Opendaylight SD-WAN testing topology
 ![Alt][1]
