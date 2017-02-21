@@ -86,11 +86,79 @@ http://10.75.195.240:8181/restconf/config/openconfig-network-instance:network-in
 ###-----GET BGP link state result-------
 http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/loc-rib/tables/bgp-linkstate:linkstate-address-family/bgp-linkstate:linkstate-subsequent-address-family/linkstate-routes
 
+
+
+###----config ospf network point to point will reduce the NRLI , otherwise , lots of DR related NLRI displayed
+ 
 {
   "bgp-linkstate:linkstate-routes": {
     "linkstate-route": [
       {
-        "route-key": "AAIAXQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEBACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAgoAAAkBAwAECgAACQ==",
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEIAAEBAQkABR4KAAAU",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235526
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "10.0.0.20/30"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABQEIAAEBAQkABSDAqAAF",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235525
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "192.168.0.5/32"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEDAAQKAAAJAQQABAoAAAo=",
         "identifier": 2,
         "local-node-descriptors": {
           "area-id": 0,
@@ -101,15 +169,15 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
           }
         },
         "link-descriptors": {
+          "ipv4-neighbor-address": "10.0.0.10",
           "ipv4-interface-address": "10.0.0.9"
         },
         "remote-node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772169,
-            "ospf-router-id": 3232235522
+          "ospf-node": {
+            "ospf-router-id": 3232235526
           }
         },
         "attributes": {
@@ -120,6 +188,7 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "value": "igp"
           },
           "link-attributes": {
+            "remote-ipv4-router-id": "192.168.0.6",
             "max-link-bandwidth": "TO5rKA==",
             "te-metric": 1,
             "max-reservable-bandwidth": "TO5rKA==",
@@ -169,115 +238,9 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "protocol-id": "ospf"
       },
       {
-        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEIAAEBAQkABR4KAAAU",
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEIAAEBAQkABR4KAAAM",
         "identifier": 2,
         "advertising-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235526
-          }
-        },
-        "prefix-descriptors": {
-          "ospf-route-type": "intra-area",
-          "ip-reachability-information": "10.0.0.20/30"
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "prefix-attributes": {
-            "prefix-metric": 1
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEIAAEBAQkABSAWFhYW",
-        "identifier": 2,
-        "advertising-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235522
-          }
-        },
-        "prefix-descriptors": {
-          "ospf-route-type": "intra-area",
-          "ip-reachability-information": "22.22.22.22/32"
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "prefix-attributes": {
-            "prefix-metric": 1
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAIAZQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAQEBACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAQoAAAUBAwAECgAABQEEAAQKAAAF",
-        "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235521
-          }
-        },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.5",
-          "ipv4-interface-address": "10.0.0.5"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772165,
-            "ospf-router-id": 3232235521
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "metric": 1,
-            "local-ipv4-router-id": "192.168.0.1"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAIAXQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEBACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAQoAAAUBAwAECgAABg==",
-        "identifier": 2,
-        "local-node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
@@ -285,88 +248,9 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "ospf-router-id": 3232235523
           }
         },
-        "link-descriptors": {
-          "ipv4-interface-address": "10.0.0.6"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772165,
-            "ospf-router-id": 3232235521
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "max-link-bandwidth": "TO5rKA==",
-            "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
-            "admin-group": 0,
-            "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
-            "unreserved-bandwidth": [
-              {
-                "priority": 2,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 3,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 0,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 1,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 6,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 7,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 4,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 5,
-                "bandwidth": "AAAAAA=="
-              }
-            ]
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABQEIAAEBAQkABSDAqAAF",
-        "identifier": 2,
-        "advertising-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235525
-          }
-        },
         "prefix-descriptors": {
           "ospf-route-type": "intra-area",
-          "ip-reachability-information": "192.168.0.5/32"
+          "ip-reachability-information": "10.0.0.12/30"
         },
         "attributes": {
           "ipv4-next-hop": {
@@ -418,19 +302,19 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "protocol-id": "ospf"
       },
       {
-        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEIAAEBAQkABR4KAAAM",
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEIAAEBAQkABSACAgIC",
         "identifier": 2,
         "advertising-node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
           "ospf-node": {
-            "ospf-router-id": 3232235523
+            "ospf-router-id": 3232235522
           }
         },
         "prefix-descriptors": {
           "ospf-route-type": "intra-area",
-          "ip-reachability-information": "10.0.0.12/30"
+          "ip-reachability-information": "2.2.2.2/32"
         },
         "attributes": {
           "ipv4-next-hop": {
@@ -450,427 +334,7 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "protocol-id": "ospf"
       },
       {
-        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABAEDAAQKAAAWAQQABAoAABU=",
-        "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235526
-          }
-        },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.21",
-          "ipv4-interface-address": "10.0.0.22"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235524
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "remote-ipv4-router-id": "1.0.0.0",
-            "max-link-bandwidth": "TO5rKA==",
-            "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
-            "admin-group": 0,
-            "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
-            "unreserved-bandwidth": [
-              {
-                "priority": 2,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 3,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 0,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 1,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 6,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 7,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 4,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 5,
-                "bandwidth": "AAAAAA=="
-              }
-            ]
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEIAAEBAQkABSDAqAAC",
-        "identifier": 2,
-        "advertising-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235522
-          }
-        },
-        "prefix-descriptors": {
-          "ospf-route-type": "intra-area",
-          "ip-reachability-information": "192.168.0.2/32"
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "prefix-attributes": {
-            "prefix-metric": 1
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAIAZQMAAAAAAAAAAgEAACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAgoAAAkBAQAgAgAABAAAAAECAQAEwKgABAICAAQAAAAAAgMABMCoAAIBAwAECgAACQEEAAQKAAAJ",
-        "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772169,
-            "ospf-router-id": 3232235522
-          }
-        },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.9",
-          "ipv4-interface-address": "10.0.0.9"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235522
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "metric": 1,
-            "remote-ipv4-router-id": "192.168.0.2"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAIAZQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEBACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAgoAAAkBAwAECgAACQEEAAQKAAAJ",
-        "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235522
-          }
-        },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.9",
-          "ipv4-interface-address": "10.0.0.9"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772169,
-            "ospf-router-id": 3232235522
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "metric": 1,
-            "local-ipv4-router-id": "192.168.0.2"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAEALQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABA==",
-        "identifier": 2,
-        "node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235524
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "node-attributes": {
-            "ipv4-router-id": "1.0.0.0"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAEALQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAw==",
-        "identifier": 2,
-        "node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235523
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "node-attributes": {
-            "ipv4-router-id": "1.0.0.0"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEIAAEBAQkABR4KAAAQ",
-        "identifier": 2,
-        "advertising-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235523
-          }
-        },
-        "prefix-descriptors": {
-          "ospf-route-type": "intra-area",
-          "ip-reachability-information": "10.0.0.16/30"
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "prefix-attributes": {
-            "prefix-metric": 1
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAEALQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABg==",
-        "identifier": 2,
-        "node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235526
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "node-attributes": {
-            "ipv4-router-id": "1.0.0.0"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABQEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEDAAQKAAAZAQQABAoAABo=",
-        "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235525
-          }
-        },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.26",
-          "ipv4-interface-address": "10.0.0.25"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235526
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "remote-ipv4-router-id": "1.0.0.0",
-            "max-link-bandwidth": "TO5rKA==",
-            "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
-            "admin-group": 0,
-            "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
-            "unreserved-bandwidth": [
-              {
-                "priority": 2,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 3,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 0,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 1,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 6,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 7,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 4,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 5,
-                "bandwidth": "AAAAAA=="
-              }
-            ]
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAEALQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABQ==",
-        "identifier": 2,
-        "node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235525
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "node-attributes": {
-            "ipv4-router-id": "1.0.0.0"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAIAXQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAQEBACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAQoAAAUBAwAECgAABQ==",
+        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAQEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEDAAQKAAAFAQQABAoAAAY=",
         "identifier": 2,
         "local-node-descriptors": {
           "area-id": 0,
@@ -881,15 +345,15 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
           }
         },
         "link-descriptors": {
+          "ipv4-neighbor-address": "10.0.0.6",
           "ipv4-interface-address": "10.0.0.5"
         },
         "remote-node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772165,
-            "ospf-router-id": 3232235521
+          "ospf-node": {
+            "ospf-router-id": 3232235523
           }
         },
         "attributes": {
@@ -900,6 +364,7 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "value": "igp"
           },
           "link-attributes": {
+            "remote-ipv4-router-id": "192.168.0.3",
             "max-link-bandwidth": "TO5rKA==",
             "te-metric": 1,
             "max-reservable-bandwidth": "TO5rKA==",
@@ -949,9 +414,21 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "protocol-id": "ospf"
       },
       {
-        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABAEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEDAAQKAAAOAQQABAoAAA0=",
+        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABAEDAAQKAAAWAQQABAoAABU=",
         "identifier": 2,
         "local-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235526
+          }
+        },
+        "link-descriptors": {
+          "ipv4-neighbor-address": "10.0.0.21",
+          "ipv4-interface-address": "10.0.0.22"
+        },
+        "remote-node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
@@ -959,11 +436,383 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "ospf-router-id": 3232235524
           }
         },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "link-attributes": {
+            "remote-ipv4-router-id": "192.168.0.4",
+            "max-link-bandwidth": "TO5rKA==",
+            "te-metric": 1,
+            "max-reservable-bandwidth": "TO5rKA==",
+            "admin-group": 0,
+            "metric": 1,
+            "local-ipv4-router-id": "192.168.0.6",
+            "unreserved-bandwidth": [
+              {
+                "priority": 2,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 3,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 0,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 1,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 6,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 7,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 4,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 5,
+                "bandwidth": "TO5rKA=="
+              }
+            ]
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEDAAQKAAAKAQQABAoAAAk=",
+        "identifier": 2,
+        "local-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235526
+          }
+        },
         "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.13",
-          "ipv4-interface-address": "10.0.0.14"
+          "ipv4-neighbor-address": "10.0.0.9",
+          "ipv4-interface-address": "10.0.0.10"
         },
         "remote-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235522
+          }
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "link-attributes": {
+            "remote-ipv4-router-id": "192.168.0.2",
+            "max-link-bandwidth": "TO5rKA==",
+            "te-metric": 1,
+            "max-reservable-bandwidth": "TO5rKA==",
+            "admin-group": 0,
+            "metric": 1,
+            "local-ipv4-router-id": "192.168.0.6",
+            "unreserved-bandwidth": [
+              {
+                "priority": 2,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 3,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 0,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 1,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 6,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 7,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 4,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 5,
+                "bandwidth": "TO5rKA=="
+              }
+            ]
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEIAAEBAQkABR4KAAAE",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235523
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "10.0.0.4/30"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEIAAEBAQkABSDAqAAC",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235522
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "192.168.0.2/32"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAQEDAAQKAAAGAQQABAoAAAU=",
+        "identifier": 2,
+        "local-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235523
+          }
+        },
+        "link-descriptors": {
+          "ipv4-neighbor-address": "10.0.0.5",
+          "ipv4-interface-address": "10.0.0.6"
+        },
+        "remote-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235521
+          }
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "link-attributes": {
+            "remote-ipv4-router-id": "192.168.0.1",
+            "max-link-bandwidth": "TO5rKA==",
+            "te-metric": 1,
+            "max-reservable-bandwidth": "TO5rKA==",
+            "admin-group": 0,
+            "metric": 1,
+            "local-ipv4-router-id": "192.168.0.3",
+            "unreserved-bandwidth": [
+              {
+                "priority": 2,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 3,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 0,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 1,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 6,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 7,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 4,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 5,
+                "bandwidth": "TO5rKA=="
+              }
+            ]
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAQEIAAEBAQkABR4KAAAE",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235521
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "10.0.0.4/30"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEIAAEBAQkABR4KAAAI",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235526
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "10.0.0.8/30"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAEALQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABA==",
+        "identifier": 2,
+        "node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235524
+          }
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "node-attributes": {
+            "ipv4-router-id": "192.168.0.4"
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAEALQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAw==",
+        "identifier": 2,
+        "node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
@@ -978,46 +827,174 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
           "origin": {
             "value": "igp"
           },
+          "node-attributes": {
+            "ipv4-router-id": "192.168.0.3"
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAEALQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABg==",
+        "identifier": 2,
+        "node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235526
+          }
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "node-attributes": {
+            "ipv4-router-id": "192.168.0.6"
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEIAAEBAQkABR4KAAAQ",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235523
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "10.0.0.16/30"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAEALQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABQ==",
+        "identifier": 2,
+        "node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235525
+          }
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "node-attributes": {
+            "ipv4-router-id": "192.168.0.5"
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABQEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEDAAQKAAAZAQQABAoAABo=",
+        "identifier": 2,
+        "local-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235525
+          }
+        },
+        "link-descriptors": {
+          "ipv4-neighbor-address": "10.0.0.26",
+          "ipv4-interface-address": "10.0.0.25"
+        },
+        "remote-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235526
+          }
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
           "link-attributes": {
-            "remote-ipv4-router-id": "1.0.0.0",
+            "remote-ipv4-router-id": "192.168.0.6",
             "max-link-bandwidth": "TO5rKA==",
             "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
+            "max-reservable-bandwidth": "TO5rKA==",
             "admin-group": 0,
             "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
+            "local-ipv4-router-id": "192.168.0.5",
             "unreserved-bandwidth": [
               {
                 "priority": 2,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 3,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 0,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 1,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 6,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 7,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 4,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 5,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               }
             ]
           },
@@ -1057,20 +1034,19 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "protocol-id": "ospf"
       },
       {
-        "route-key": "AAIAZQMAAAAAAAAAAgEAACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAQoAAAUBAQAgAgAABAAAAAECAQAEwKgABAICAAQAAAAAAgMABMCoAAMBAwAECgAABQEEAAQKAAAG",
+        "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABAEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEDAAQKAAAOAQQABAoAAA0=",
         "identifier": 2,
         "local-node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772165,
-            "ospf-router-id": 3232235521
+          "ospf-node": {
+            "ospf-router-id": 3232235524
           }
         },
         "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.6",
-          "ipv4-interface-address": "10.0.0.5"
+          "ipv4-neighbor-address": "10.0.0.13",
+          "ipv4-interface-address": "10.0.0.14"
         },
         "remote-node-descriptors": {
           "area-id": 0,
@@ -1088,8 +1064,47 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "value": "igp"
           },
           "link-attributes": {
+            "remote-ipv4-router-id": "192.168.0.3",
+            "max-link-bandwidth": "TO5rKA==",
+            "te-metric": 1,
+            "max-reservable-bandwidth": "TO5rKA==",
+            "admin-group": 0,
             "metric": 1,
-            "remote-ipv4-router-id": "1.0.0.0"
+            "local-ipv4-router-id": "192.168.0.4",
+            "unreserved-bandwidth": [
+              {
+                "priority": 2,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 3,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 0,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 1,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 6,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 7,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 4,
+                "bandwidth": "TO5rKA=="
+              },
+              {
+                "priority": 5,
+                "bandwidth": "TO5rKA=="
+              }
+            ]
           },
           "as-path": {},
           "local-pref": {
@@ -1118,117 +1133,6 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
           },
           "node-attributes": {
             "ipv4-router-id": "192.168.0.1"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAIAXQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEBACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAgoAAAkBAwAECgAACg==",
-        "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235526
-          }
-        },
-        "link-descriptors": {
-          "ipv4-interface-address": "10.0.0.10"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772169,
-            "ospf-router-id": 3232235522
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "max-link-bandwidth": "TO5rKA==",
-            "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
-            "admin-group": 0,
-            "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
-            "unreserved-bandwidth": [
-              {
-                "priority": 2,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 3,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 0,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 1,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 6,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 7,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 4,
-                "bandwidth": "AAAAAA=="
-              },
-              {
-                "priority": 5,
-                "bandwidth": "AAAAAA=="
-              }
-            ]
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAQEIAAEBAQkABSALCwsL",
-        "identifier": 2,
-        "advertising-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235521
-          }
-        },
-        "prefix-descriptors": {
-          "ospf-route-type": "intra-area",
-          "ip-reachability-information": "11.11.11.11/32"
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "prefix-attributes": {
-            "prefix-metric": 1
           },
           "as-path": {},
           "local-pref": {
@@ -1270,28 +1174,19 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "protocol-id": "ospf"
       },
       {
-        "route-key": "AAIAZQMAAAAAAAAAAgEAACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAQoAAAUBAQAgAgAABAAAAAECAQAEwKgABAICAAQAAAAAAgMABMCoAAEBAwAECgAABQEEAAQKAAAF",
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAgEIAAEBAQkABR4KAAAI",
         "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772165,
-            "ospf-router-id": 3232235521
-          }
-        },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.5",
-          "ipv4-interface-address": "10.0.0.5"
-        },
-        "remote-node-descriptors": {
+        "advertising-node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
           "ospf-node": {
-            "ospf-router-id": 3232235521
+            "ospf-router-id": 3232235522
           }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "10.0.0.8/30"
         },
         "attributes": {
           "ipv4-next-hop": {
@@ -1300,9 +1195,40 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
           "origin": {
             "value": "igp"
           },
-          "link-attributes": {
-            "metric": 1,
-            "remote-ipv4-router-id": "192.168.0.1"
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAQEIAAEBAQkABSABAQEB",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235521
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "1.1.1.1/32"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
           },
           "as-path": {},
           "local-pref": {
@@ -1374,45 +1300,45 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "value": "igp"
           },
           "link-attributes": {
-            "remote-ipv4-router-id": "1.0.0.0",
+            "remote-ipv4-router-id": "192.168.0.5",
             "max-link-bandwidth": "TO5rKA==",
             "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
+            "max-reservable-bandwidth": "TO5rKA==",
             "admin-group": 0,
             "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
+            "local-ipv4-router-id": "192.168.0.3",
             "unreserved-bandwidth": [
               {
                 "priority": 2,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 3,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 0,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 1,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 6,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 7,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 4,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 5,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               }
             ]
           },
@@ -1437,6 +1363,38 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "prefix-descriptors": {
           "ospf-route-type": "intra-area",
           "ip-reachability-information": "192.168.0.6/32"
+        },
+        "attributes": {
+          "ipv4-next-hop": {
+            "global": "172.16.1.85"
+          },
+          "origin": {
+            "value": "igp"
+          },
+          "prefix-attributes": {
+            "prefix-metric": 1
+          },
+          "as-path": {},
+          "local-pref": {
+            "pref": 100
+          }
+        },
+        "protocol-id": "ospf"
+      },
+      {
+        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABAEIAAEBAQkABR4KAAAM",
+        "identifier": 2,
+        "advertising-node-descriptors": {
+          "area-id": 0,
+          "as-number": 1,
+          "domain-id": 3232235524,
+          "ospf-node": {
+            "ospf-router-id": 3232235524
+          }
+        },
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "10.0.0.12/30"
         },
         "attributes": {
           "ipv4-next-hop": {
@@ -1488,80 +1446,6 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "protocol-id": "ospf"
       },
       {
-        "route-key": "AAIAZQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgAAwEBACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAQoAAAUBAwAECgAABgEEAAQKAAAF",
-        "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235523
-          }
-        },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.5",
-          "ipv4-interface-address": "10.0.0.6"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772165,
-            "ospf-router-id": 3232235521
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAMAOwMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABAEIAAEBAQkABR4KAAAM",
-        "identifier": 2,
-        "advertising-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235524
-          }
-        },
-        "prefix-descriptors": {
-          "ospf-route-type": "intra-area",
-          "ip-reachability-information": "10.0.0.12/30"
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "prefix-attributes": {
-            "prefix-metric": 1
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
         "route-key": "AAIAYQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABAEBACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEDAAQKAAAVAQQABAoAABY=",
         "identifier": 2,
         "local-node-descriptors": {
@@ -1592,45 +1476,45 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "value": "igp"
           },
           "link-attributes": {
-            "remote-ipv4-router-id": "1.0.0.0",
+            "remote-ipv4-router-id": "192.168.0.6",
             "max-link-bandwidth": "TO5rKA==",
             "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
+            "max-reservable-bandwidth": "TO5rKA==",
             "admin-group": 0,
             "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
+            "local-ipv4-router-id": "192.168.0.4",
             "unreserved-bandwidth": [
               {
                 "priority": 2,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 3,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 0,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 1,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 6,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 7,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 4,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 5,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               }
             ]
           },
@@ -1642,28 +1526,19 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
         "protocol-id": "ospf"
       },
       {
-        "route-key": "AAIAZQMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABgEBACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAgoAAAkBAwAECgAACgEEAAQKAAAJ",
+        "route-key": "AAMAOgMAAAAAAAAAAgEAACACAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAEwKgABAEIAAEBAQkABBisEAE=",
         "identifier": 2,
-        "local-node-descriptors": {
+        "advertising-node-descriptors": {
           "area-id": 0,
           "as-number": 1,
           "domain-id": 3232235524,
           "ospf-node": {
-            "ospf-router-id": 3232235526
+            "ospf-router-id": 3232235524
           }
         },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.9",
-          "ipv4-interface-address": "10.0.0.10"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772169,
-            "ospf-router-id": 3232235522
-          }
+        "prefix-descriptors": {
+          "ospf-route-type": "intra-area",
+          "ip-reachability-information": "172.16.1.0/24"
         },
         "attributes": {
           "ipv4-next-hop": {
@@ -1672,77 +1547,8 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
           "origin": {
             "value": "igp"
           },
-          "link-attributes": {
-            "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAEAMQMAAAAAAAAAAgEAACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAQoAAAU=",
-        "identifier": 2,
-        "node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772165,
-            "ospf-router-id": 3232235521
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAIAZQMAAAAAAAAAAgEAACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAgoAAAkBAQAgAgAABAAAAAECAQAEwKgABAICAAQAAAAAAgMABMCoAAYBAwAECgAACQEEAAQKAAAK",
-        "identifier": 2,
-        "local-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772169,
-            "ospf-router-id": 3232235522
-          }
-        },
-        "link-descriptors": {
-          "ipv4-neighbor-address": "10.0.0.10",
-          "ipv4-interface-address": "10.0.0.9"
-        },
-        "remote-node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-node": {
-            "ospf-router-id": 3232235526
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
-          },
-          "link-attributes": {
-            "metric": 1,
-            "remote-ipv4-router-id": "1.0.0.0"
+          "prefix-attributes": {
+            "prefix-metric": 1
           },
           "as-path": {},
           "local-pref": {
@@ -1782,45 +1588,45 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "value": "igp"
           },
           "link-attributes": {
-            "remote-ipv4-router-id": "1.0.0.0",
+            "remote-ipv4-router-id": "192.168.0.3",
             "max-link-bandwidth": "TO5rKA==",
             "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
+            "max-reservable-bandwidth": "TO5rKA==",
             "admin-group": 0,
             "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
+            "local-ipv4-router-id": "192.168.0.5",
             "unreserved-bandwidth": [
               {
                 "priority": 2,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 3,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 0,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 1,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 6,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 7,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 4,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 5,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               }
             ]
           },
@@ -1894,45 +1700,45 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "value": "igp"
           },
           "link-attributes": {
-            "remote-ipv4-router-id": "1.0.0.0",
+            "remote-ipv4-router-id": "192.168.0.4",
             "max-link-bandwidth": "TO5rKA==",
             "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
+            "max-reservable-bandwidth": "TO5rKA==",
             "admin-group": 0,
             "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
+            "local-ipv4-router-id": "192.168.0.3",
             "unreserved-bandwidth": [
               {
                 "priority": 2,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 3,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 0,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 1,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 6,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 7,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 4,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 5,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               }
             ]
           },
@@ -1974,45 +1780,45 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
             "value": "igp"
           },
           "link-attributes": {
-            "remote-ipv4-router-id": "1.0.0.0",
+            "remote-ipv4-router-id": "192.168.0.5",
             "max-link-bandwidth": "TO5rKA==",
             "te-metric": 1,
-            "max-reservable-bandwidth": "AAAAAA==",
+            "max-reservable-bandwidth": "TO5rKA==",
             "admin-group": 0,
             "metric": 1,
-            "local-ipv4-router-id": "1.0.0.0",
+            "local-ipv4-router-id": "192.168.0.6",
             "unreserved-bandwidth": [
               {
                 "priority": 2,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 3,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 0,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 1,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 6,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 7,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 4,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               },
               {
                 "priority": 5,
-                "bandwidth": "AAAAAA=="
+                "bandwidth": "TO5rKA=="
               }
             ]
           },
@@ -2047,32 +1853,6 @@ http://10.75.195.240:8181/restconf/operational/bgp-rib:bgp-rib/rib/bgp-example/l
           },
           "prefix-attributes": {
             "prefix-metric": 1
-          },
-          "as-path": {},
-          "local-pref": {
-            "pref": 100
-          }
-        },
-        "protocol-id": "ospf"
-      },
-      {
-        "route-key": "AAEAMQMAAAAAAAAAAgEAACQCAAAEAAAAAQIBAATAqAAEAgIABAAAAAACAwAIwKgAAgoAAAk=",
-        "identifier": 2,
-        "node-descriptors": {
-          "area-id": 0,
-          "as-number": 1,
-          "domain-id": 3232235524,
-          "ospf-pseudonode": {
-            "lan-interface": 167772169,
-            "ospf-router-id": 3232235522
-          }
-        },
-        "attributes": {
-          "ipv4-next-hop": {
-            "global": "172.16.1.85"
-          },
-          "origin": {
-            "value": "igp"
           },
           "as-path": {},
           "local-pref": {
