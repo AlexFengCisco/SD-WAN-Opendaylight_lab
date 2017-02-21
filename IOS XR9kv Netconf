@@ -269,5 +269,60 @@ xml-schema[oper]:> ls
 </rpc-reply>
 ]]>]]>
 
+#------------------Change Tunnel TE Path option------------------------
 
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<Configuration>
+    <InterfaceConfigurationTable MajorVersion="5" MinorVersion="4">
+                <InterfaceConfiguration>
+                    <Naming>
+                        <Active>
+                            act
+                        </Active>
+                        <InterfaceName>
+                            tunnel-te1
+                        </InterfaceName>
+                    </Naming>
+                    <InterfaceVirtual>
+                        true
+                    </InterfaceVirtual>
+                    <TunnelTEAttributes MajorVersion="25" MinorVersion="0">
+                        <PathOptionProtectTable>
+                            <PathOptionProtect>
+                                <Naming>
+                                    <Protection>
+                                        Active
+                                    </Protection>
+                                </Naming>
+                                <PathOptionTable>
+                                    <PathOption>
+                                        <Naming>
+                                            <PreferenceLevel>
+                                                1
+                                            </PreferenceLevel>
+                                        </Naming>
+                                        <PathType>
+                                            ExplicitName
+                                        </PathType>
+                                        <PathName>
+                                            rsvpto6via4      ##---change path name is okay
+                                        </PathName>
+                                    </PathOption>
+                                </PathOptionTable>
+                            </PathOptionProtect>
+                        </PathOptionProtectTable>
+                    </TunnelTEAttributes>
+                </InterfaceConfiguration>
+            </InterfaceConfigurationTable>
+</Configuration>
+</config>
+</edit-config>
+<commit/>
+</rpc>]]>]]>
 
