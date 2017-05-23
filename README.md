@@ -11,8 +11,7 @@
 #####Netconf edit configuration to create service ,direct traffic to LSP tunnel etc.
 
 ### Opendaylight SD-WAN testing topology
-![Alt][1]
-[1]:/topology.png "Pic"
+![Alt](topology.png)
 
 iosv-1 send traffic to iosv-2 via two path options, iosxrv9000-2 setup BGP address family BGP link state , 
 redistribute OSPF linkstate to BGP and send to Opendaylight controller .
